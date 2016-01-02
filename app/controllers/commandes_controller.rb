@@ -9,11 +9,13 @@ class CommandesController < ApplicationController
 	end
 
 	def new
+	#@client = Client.find_by_id(params[:id])
 	 @commande = Commande.new
 	end
 
 	def create
-		@commande = Commande.new(commande_params)
+		#@client = Client.find_by_id(params[:id])
+		@commande = Commande.new params.require(:commande).permit(:datecom,:etat,:client_id)
 		if @commande.save
 			flash[:notice] = "Commande ajouté"
    			redirect_to produits_path
@@ -27,7 +29,8 @@ class CommandesController < ApplicationController
  	#end
 
 
-	def commande_params
-		params.require(:commande).permit(current_client.id,Time.now.strftime("%d %B %Y"),"En cours de paiement")
-	end
+	#def commande_params
+		#params.require(:commande).permit(,Time.now.strftime("%d %B %Y"),"En cours de paiement")
+		params.require(:commande).permit(:datecom,:etat,:client_id)
+	#end
 end
