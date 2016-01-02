@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chezgilles</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+ </head>
+ <body>
+<table>
+ <tr>
+  <td>Chez Gilles</td>
+  <td><%= link_to "Accueil", root_path %></td>
+  <td><%= link_to "Produits", produits_path %></td>
+  <td>
+    <% if client_signed_in? %>
+     Connecté en tant que - <%= current_client.email %> et <%= current_client.id %>
+     <%= link_to 'Se déconnecter', destroy_client_session_path, method: :delete %>
+     <%= link_to 'Mon panier', panier_path %>
+    <% else %>
+     <%= link_to 'Se connecter', new_client_session_path %>
+     <%= link_to "S'inscrire", new_client_registration_path %>
+    <% end %>
+</td>
+</tr>
+</table>
+
+  <div class="container">
+   <%= yield %>
+  </div>
+
+ </body>
+</html>

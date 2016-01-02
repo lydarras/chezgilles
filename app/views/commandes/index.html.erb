@@ -1,0 +1,8 @@
+La liste des commandes
+
+<% if @commandes.any? %>
+<%= Time.now.strftime("%d %B %Y") %>
+<% else %>
+ <p>T'as mis aucune commande</p>
+<% end %>
+

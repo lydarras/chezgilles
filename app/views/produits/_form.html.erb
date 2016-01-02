@@ -1,0 +1,22 @@
+<%= simple_form_for @produit do |f| %>
+ <div class="row">
+  <div class="form-group col-lg-5">
+   <%= f.label :nom, 'Nom' %>
+   <%= f.text_field :nom %>
+  </div>
+  <div class="form-group col-lg-5">
+    <%= f.association :pay, label_method: :nom, label: 'Pays', class: 'form-control' %>
+  </div>
+  <div class="form-group col-lg-5">
+   <%= f.label :prix, 'Prix' %>
+   <%= f.text_field :prix %>
+  </div>
+  <div class="form-group col-lg-5">
+   <%= f.input :description, as: :text %>
+  </div>
+  <div class="form-group col-lg-5">
+  	<%= f.association :categorie, label_method: :nom, label: 'Catégorie', class: 'form-control' %>
+  </div>
+ </div>
+ <%= f.submit 'Enregistrer' %>
+<% end %>

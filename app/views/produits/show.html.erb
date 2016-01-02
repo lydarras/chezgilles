@@ -1,0 +1,23 @@
+<h1>Afficher un Produit</h1>
+<p>Nom : <%= @produit.nom %></p>
+<p>Pays :
+<% pay = @produit.pay %>
+<% if pay.nil? -%>
+N.C
+<% else %>
+ <%= provenance(pay.nom) %>
+<% end %>
+</p>
+<p>Prix : <%= @produit.prix %> €</p>
+<p>Description : <%= @produit.description %></p>
+<p>Catégorie :
+<% categorie = @produit.categorie %>
+<% if categorie.nil? %>
+Aucune
+<% else %>
+ <%= genre(categorie.nom) %>
+<% end %>
+</p>
+
+<%= link_to 'Modifier', edit_produit_path(@produit) %> |
+<%= link_to 'Retour', produits_path %>

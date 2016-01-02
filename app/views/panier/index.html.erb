@@ -1,0 +1,43 @@
+<h1>Ton panier</h1>
+
+<% if @panier.empty? %>
+<p>Ton panier est en ce moment vide</p>
+
+<% else %>
+
+<%= link_to 'Vider le panier', panier_clear_path %> 
+
+ <section class="table-responsive">
+ <table class="table">
+<thead>
+ <tr>
+ <th>Nom</th>
+ <th>Description</th>
+ <th>Prix</th>
+ <th>Quantité</th>
+ </tr>
+</thead>
+<tbody>
+
+<% total = 0 %>
+
+ <% @panier.each do | id, quantite | %>
+  <% produit = Produit.find_by_id(id) %>
+  <tr>
+   <td><%= link_to produit.nom, produit %></td>
+   <td><%= produit.description %></td>
+   <td><%= number_to_currency(produit.prix, :unit => '€') %></td>
+   <td><%= quantite %> </td>
+  </tr>
+  <% total += quantite * produit.prix %>
+ <% end %>
+
+</tbody>
+<table>
+</section>
+
+<p> Total : <%= number_to_currency(total, :unit => '€') %> </p>
+
+<%= link_to "Valider l'achat", creation_path %>
+
+<% end %>

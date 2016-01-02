@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  client_id: 
+  datecom: 2016-01-02 10:33:12
+  etat: MyString
+
+two:
+  client_id: 
+  datecom: 2016-01-02 10:33:12
+  etat: MyString

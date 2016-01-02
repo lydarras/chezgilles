@@ -1,0 +1,47 @@
+<h1>Liste des Produits</h1>
+
+<% if @produits.any? %>
+ <section class="table-responsive">
+ <table class="table">
+  <thead>
+   <tr>
+    <th>#</th>
+    <th>Nom</th>
+    <th>Pays</th>
+    <th>Prix</th>
+    <th>Description</th>
+    <th>Catégorie</th>
+    <th>Actions</th>
+   </tr>
+  </thead>
+  <tbody>
+  	<% @produits.each do |produit| %>
+     <tr>
+      <td><%= produit.id %></td>
+      <td><%= produit.nom %></td>
+      <td><%= produit.pay ? provenance(produit.pay.nom) : 'N.C' %></td>
+      <td><%= produit.prix %> €</td>
+      <td><%= produit.description %></td>
+      <td><%= produit.categorie ? genre(produit.categorie.nom) : 'Aucune' %></td>
+      <td><%= link_to 'Afficher', produit_path(produit) %>
+          <%= link_to 'Éditer', edit_produit_path(produit) %>
+          <%= link_to 'Supprimer', produit,
+                  method: :delete,
+                  data: { confirm: 'Êtes-vous sûr(e) de vouloir supprimer ce produit ?' } %>
+      </td>
+      <% if client_signed_in? %>
+      <td><a href="/panier/<%= produit.id %>">Ajouter au panier</a></td>
+      <% end %>
+    </tr>
+   <% end %>
+  </tbody>
+</table>
+</section>
+<% else %>
+ <p>Plus de produits pour le moment</p>
+<% end %>
+
+<% if client_signed_in? %>
+ <p><%= link_to 'Ajouter un produit', new_produit_path %></p>
+<% end %>
+
