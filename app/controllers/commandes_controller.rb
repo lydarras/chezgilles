@@ -8,29 +8,14 @@ class CommandesController < ApplicationController
 	def show
 	end
 
-	def new
-	#@client = Client.find_by_id(params[:id])
-	 @commande = Commande.new
-	end
-
 	def create
-		#@client = Client.find_by_id(params[:id])
-		@commande = Commande.new params.require(:commande).permit(:datecom,:etat,:client_id)
+		@commande = Commande.new(client_id: current_client.id,datecom: Time.now.strftime("%d %B %Y"),etat: "En cours")
 		if @commande.save
 			flash[:notice] = "Commande ajouté"
-   			redirect_to produits_path
+   			redirect_to commandes_path
   		else
-   			render 'new'
+   			render produits_path
   		end
 	end
 
-	#def set_commande
-  	# @commande = Commande.find params[:id]
- 	#end
-
-
-	#def commande_params
-		#params.require(:commande).permit(,Time.now.strftime("%d %B %Y"),"En cours de paiement")
-		params.require(:commande).permit(:datecom,:etat,:client_id)
-	#end
 end

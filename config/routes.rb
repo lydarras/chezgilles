@@ -5,7 +5,7 @@ Rails.application.routes.draw do
  get '/panier' => 'panier#index'
  get '/panier/clear' => 'panier#clearPanier'
  get '/panier/:id' => 'panier#add'
-
+ 
  resources :commandes
  get '/creation' => 'commandes#create'
  resources :categories

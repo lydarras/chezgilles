@@ -1,7 +1,26 @@
 La liste des commandes
 
 <% if @commandes.any? %>
-<%= Time.now.strftime("%d %B %Y") %>
+<section class="table-responsive">
+ <table class="table">
+  <thead>
+   <tr>
+    <th>Num. Commande</th>
+    <th>Date</th>
+    <th>Etat</th>
+   </tr>
+  </thead>
+  <tbody>
+  	<% @commandes.each do |commande| %>
+     <tr>
+      <td><%= commande.id %></td>
+      <td><%= commande.datecom %></td>
+      <td><%= commande.etat %></td>
+    </tr>
+   <% end %>
+  </tbody>
+</table>
+</section>
 <% else %>
  <p>T'as mis aucune commande</p>
 <% end %>
